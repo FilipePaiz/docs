@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DwarfDiaries — Unreal Engine Plugins</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADlSURBVFhH7ZXBDYMwDEV/yt5dwQuwBBuwAkuwQcdgBVZgA0ZgBDboCI5OkCq1VUlIQJzk6EuWLCX+thObAPwzTL0gyxJJR/ETXC+fT+IqmWaG1aEqU8fVoSpTx9WhKlPH1aEqU8fVoSpTx9WxGXGOCK+IEGNxJnmX9F3AC3yAc0Tw7UMXeG4zHMBzBM9MqKEP3BFHCI8y/EZCA96QOcRz0x4QL4RxRjiE+EZ8Y/wBj5AecQzE17QL0RxRriG+ET4Rnwj/AGPUB7xzIQb9AtRnBGuIb4RPpFfCP+ASdI/wL7g/AJWUC5O01GymAAAAABJRU5ErkJggg==">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  :root {
+    --primary: #3B82F6;
+    --primary-dark: #1D4ED8;
+    --primary-light: #60A5FA;
+    --accent: #10B981;
+    --accent-light: #34D399;
+    --bg-dark: #0F172A;
+    --bg-mid: #1E293B;
+    --bg-card: #162032;
+    --text-bright: #F1F5F9;
+    --text-mid: #94A3B8;
+    --text-dim: #64748B;
+    --border: rgba(255,255,255,0.08);
+    --glow-blue: rgba(59, 130, 246, 0.15);
+    --glow-green: rgba(16, 185, 129, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-bright);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* === ANIMATED BACKGROUND === */
+  .bg-grid {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bg-glow {
+    position: fixed;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .bg-glow-1 {
+    top: -200px; right: -100px;
+    background: radial-gradient(circle, rgba(59,130,246,0.15), transparent 70%);
+  }
+
+  .bg-glow-2 {
+    bottom: -200px; left: -100px;
+    background: radial-gradient(circle, rgba(16,185,129,0.1), transparent 70%);
+  }
+
+  /* === NAVIGATION === */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(20px);
+    background: rgba(15,23,42,0.8);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text-bright);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--primary-light); }
+
+  .nav-links { display: flex; gap: 32px; }
+
+  .nav-links a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text-bright); }
+
+  /* === HERO === */
+  .hero {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 120px 40px 80px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 100px;
+    padding: 6px 18px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--primary-light);
+    margin-bottom: 32px;
+    animation: fadeInUp 0.6s ease both;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .hero h1 {
+    font-size: clamp(48px, 7vw, 80px);
+    font-weight: 900;
+    letter-spacing: -3px;
+    line-height: 1.05;
+    margin-bottom: 24px;
+    animation: fadeInUp 0.6s ease 0.1s both;
+  }
+
+  .hero h1 .gradient-text {
+    background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-sub {
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--text-mid);
+    max-width: 560px;
+    margin-bottom: 48px;
+    animation: fadeInUp 0.6s ease 0.2s both;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    animation: fadeInUp 0.6s ease 0.3s both;
+  }
+
+  .hero-stat {
+    text-align: center;
+  }
+
+  .hero-stat .num {
+    display: block;
+    font-size: 36px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--text-bright);
+  }
+
+  .hero-stat .label {
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* === SECTIONS === */
+  section {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px;
+  }
+
+  .section-label {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-light);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 16px;
+  }
+
+  .section-desc {
+    font-size: 17px;
+    color: var(--text-mid);
+    max-width: 600px;
+    margin-bottom: 48px;
+  }
+
+  /* === PLUGIN CARDS === */
+  .plugins-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 24px;
+  }
+
+  .plugin-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .plugin-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .plugin-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59,130,246,0.3);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 40px var(--glow-blue);
+  }
+
+  .plugin-card:hover::before { opacity: 1; }
+
+  .plugin-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+
+  .plugin-icon {
+    width: 56px; height: 56px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  .plugin-icon-save {
+    background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+  }
+
+  .plugin-icon-inventory {
+    background: linear-gradient(135deg, #8B5CF6, #6D28D9);
+  }
+
+  .plugin-icon-coming {
+    background: linear-gradient(135deg, #475569, #334155);
+  }
+
+  .plugin-name {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-bottom: 2px;
+  }
+
+  .plugin-tagline {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .plugin-version {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent-light);
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-top: 4px;
+  }
+
+  .plugin-desc {
+    font-size: 15px;
+    color: var(--text-mid);
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+
+  .plugin-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .plugin-feature {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-mid);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 12px;
+  }
+
+  .plugin-actions {
+    display: flex;
+    gap: 12px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 24px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-dark);
+    box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--text-mid);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--primary-light);
+    color: var(--text-bright);
+    background: rgba(59,130,246,0.05);
+  }
+
+  .btn-disabled {
+    background: rgba(255,255,255,0.04);
+    color: var(--text-dim);
+    cursor: default;
+    border: 1px solid var(--border);
+  }
+
+  .btn svg {
+    width: 16px; height: 16px;
+  }
+
+  /* === ABOUT === */
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .about-text p {
+    color: var(--text-mid);
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+
+  .about-text strong {
+    color: var(--text-bright);
+    font-weight: 600;
+  }
+
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+  }
+
+  .tech-tag {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--primary-light);
+    background: rgba(59,130,246,0.08);
+    border: 1px solid rgba(59,130,246,0.15);
+    border-radius: 6px;
+    padding: 5px 14px;
+  }
+
+  .about-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+  }
+
+  .about-card h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--text-bright);
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-row:last-child { border-bottom: none; }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--text-dim);
+  }
+
+  .stat-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-bright);
+  }
+
+  /* === FOOTER === */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    text-align: center;
+  }
+
+  .footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer-text {
+    font-size: 13px;
+    color: var(--text-dim);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text-bright); }
+
+  /* === RESPONSIVE === */
+  @media (max-width: 768px) {
+    nav { padding: 12px 20px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 20px 60px; }
+    .hero-stats { gap: 24px; }
+    .hero-stat .num { font-size: 28px; }
+    section { padding: 60px 20px; }
+    .section-title { font-size: 28px; }
+    .plugins-grid { grid-template-columns: 1fr; }
+    .about-content { grid-template-columns: 1fr; gap: 32px; }
+    .footer-content { flex-direction: column; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Background effects -->
+<div class="bg-grid"></div>
+<div class="bg-glow bg-glow-1"></div>
+<div class="bg-glow bg-glow-2"></div>
+
+<!-- Navigation -->
+<nav>
+  <a href="#" class="nav-logo">Dwarf<span>Diaries</span></a>
+  <div class="nav-links">
+    <a href="#plugins">Plugins</a>
+    <a href="#about">About</a>
+    <a href="https://www.fab.com" target="_blank">Fab Store</a>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<div class="hero">
+  <div class="hero-badge">Unreal Engine 5.6+</div>
+  <h1>
+    Professional<br>
+    <span class="gradient-text">UE5 Plugins</span>
+  </h1>
+  <p class="hero-sub">
+    Production-ready systems for Unreal Engine. Built with clean architecture, full Blueprint support, and documentation that actually helps.
+  </p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <span class="num">100%</span>
+      <span class="label">Blueprint Ready</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">C++</span>
+      <span class="label">Core Performance</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num">5.6+</span>
+      <span class="label">Engine Support</span>
+    </div>
+  </div>
+</div>
+
+<!-- Plugins Section -->
+<section id="plugins">
+  <span class="section-label">Products</span>
+  <h2 class="section-title">Plugin Ecosystem</h2>
+  <p class="section-desc">Each plugin is designed to work standalone or together. Shared design philosophy, consistent APIs, and cross-plugin integration where it matters.</p>
+
+  <div class="plugins-grid">
+
+    <!-- SmartSave -->
+    <div class="plugin-card">
+      <div class="plugin-header">
+        <div class="plugin-icon plugin-icon-save">
+          <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="28" height="28"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        </div>
+        <div>
+          <div class="plugin-name">SmartSave</div>
+          <div class="plugin-tagline">Save / Load System</div>
+          <span class="plugin-version">v1.0 — Released</span>
+        </div>
+      </div>
+      <p class="plugin-desc">
+        Complete save/load system replacing UE's basic USaveGame. Multi-slot saves with metadata, async operations, AES-256 encryption, LZ4/Zlib compression, automatic backups, save versioning with migrations, and a built-in save/load menu UI.
+      </p>
+      <div class="plugin-features">
+        <span class="plugin-feature">Multi-Slot</span>
+        <span class="plugin-feature">Async</span>
+        <span class="plugin-feature">Encrypted</span>
+        <span class="plugin-feature">Compressed</span>
+        <span class="plugin-feature">Auto-Save</span>
+        <span class="plugin-feature">Migrations</span>
+        <span class="plugin-feature">Built-in UI</span>
+        <span class="plugin-feature">Thumbnails</span>
+      </div>
+      <div class="plugin-actions">
+        <a href="/smartsave/" class="btn btn-primary">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Documentation
+        </a>
+        <a href="https://www.fab.com" target="_blank" class="btn btn-outline">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+          Fab Store
+        </a>
+      </div>
+    </div>
+
+    <!-- SmartInventory -->
+    <div class="plugin-card">
+      <div class="plugin-header">
+        <div class="plugin-icon plugin-icon-inventory">
+          <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="28" height="28"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
+        </div>
+        <div>
+          <div class="plugin-name">SmartInventory</div>
+          <div class="plugin-tagline">Inventory, Equipment &amp; Crafting</div>
+          <span class="plugin-version" style="color: var(--primary-light); background: rgba(59,130,246,0.1); border-color: rgba(59,130,246,0.2);">In Development</span>
+        </div>
+      </div>
+      <p class="plugin-desc">
+        DataAsset-driven inventory framework with container-based architecture, customizable equipment slots with stat modifiers, recipe-based crafting with station support and queues, and a complete drag-and-drop UI with tooltips and split stacking.
+      </p>
+      <div class="plugin-features">
+        <span class="plugin-feature">Container-Based</span>
+        <span class="plugin-feature">Drag &amp; Drop</span>
+        <span class="plugin-feature">Equipment</span>
+        <span class="plugin-feature">Crafting</span>
+        <span class="plugin-feature">Weight System</span>
+        <span class="plugin-feature">Slot Filters</span>
+        <span class="plugin-feature">DataAsset Items</span>
+        <span class="plugin-feature">SmartSave Integration</span>
+      </div>
+      <div class="plugin-actions">
+        <a class="btn btn-disabled">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Docs Coming Soon
+        </a>
+        <a class="btn btn-disabled">
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg>
+          Coming to Fab
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- About Section -->
+<section id="about">
+  <span class="section-label">About</span>
+  <h2 class="section-title">Built by DwarfDiaries</h2>
+
+  <div class="about-content">
+    <div class="about-text">
+      <p>
+        Hey! I'm the <strong>solo developer</strong> behind DwarfDiaries, and I've been building things for the web and beyond for over <strong>10 years</strong>. This is my studio where I channel all that experience into polished Unreal Engine plugins.
+      </p>
+      <p>
+        My journey started with <strong>web development</strong> — building everything from full-stack applications and REST APIs to real-time dashboards. From there I jumped into <strong>browser-based games</strong>, which was my gateway drug into game dev. Turns out, making things interactive and fun is way more addictive than building CRUD apps.
+      </p>
+      <p>
+        That led me to <strong>mobile applications</strong> — shipping commercial apps for the motorcycle community, utility tools, and companion apps for games. Then came the rabbit hole I never climbed out of: <strong>private MMORPG servers</strong>. I spent years building custom server infrastructure for well-known MMOs, going deep into <strong>networking, packet handling, anti-cheat systems, custom skill trees, economy balancing, graphics engineering</strong>, and basically reverse-engineering entire game systems to rebuild them better.
+      </p>
+      <p>
+        Along the way I've worked with <strong>multiple game engines</strong> — from LibGDX for mobile games and idle/gacha prototypes, to building visual novels and RPG systems. These days, <strong>Unreal Engine 5</strong> is my home. Everything I've learned over a decade — clean architecture, performance-first thinking, the importance of good documentation — goes into every plugin I build.
+      </p>
+      <p>
+        My philosophy is simple: <strong>plugins should save you time, not create new problems</strong>. That means C++ performance under the hood, Blueprint access for everyone, and docs that actually explain things instead of leaving you guessing.
+      </p>
+    </div>
+
+    <div class="about-card">
+      <h3>Quick Facts</h3>
+      <div class="stat-row">
+        <span class="stat-label">Studio</span>
+        <span class="stat-value">DwarfDiaries</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Experience</span>
+        <span class="stat-value">10+ Years</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Plugin Architecture</span>
+        <span class="stat-value">C++ Core + Blueprint API</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <span class="footer-text">&copy; 2026 DwarfDiaries &nbsp;&bull;&nbsp; Built for Unreal Engine 5.6+</span>
+    <div class="footer-links">
+      <a href="https://www.fab.com" target="_blank">Fab Store</a>
+      <a href="mailto:contact@dwarfdiaries.com">Contact</a>
