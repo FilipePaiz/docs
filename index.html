@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DwarfDiaries — Unreal Engine Plugins</title>
-<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADlSURBVFhH7ZXBDYMwDEV/yt5dwQuwBBuwAkuwQcdgBVZgA0ZgBDboCI5OkCq1VUlIQJzk6EuWLCX+thObAPwzTL0gyxJJR/ETXC+fT+IqmWaG1aEqU8fVoSpTx9WhKlPH1aEqU8fVoSpTx9WxGXGOCK+IEGNxJnmX9F3AC3yAc0Tw7UMXeG4zHMBzBM9MqKEP3BFHCI8y/EZCA96QOcRz0x4QL4RxRjiE+EZ8Y/wBj5AecQzE17QL0RxRriG+ET4Rnwj/AGPUB7xzIQb9AtRnBGuIb4RPpFfCP+ASdI/wL7g/AJWUC5O01GymAAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAEiElEQVR4nMWX329UVRDHPzPn7L0t3d0WKNhiilB+BCMJkiDEoCYGFYPgGyE8EHwlTYhPPhgT/wM1JLz7TjQGQZ58MUajEo2JEWwNYAwJsC0/ui3b3XvvGR9ul5bSdru1Cd9kcs9NbmbmzHzne88RcjggK5V2rA1RdlqgiMgQELMyqGN21mBCG+5MtXp1rBlTHgXv3XYo4D9XkXUAZtkKxc4h4gAIZhUlfa86OvIN4ASg1LvjHVM9DygWEkBAfGuvs9bW6mNLAUO0AAQJ4d3q6NWLUuzf3mupvyZICUIG06m2ggo0spm1U7CWWQCWgTrDquLTQdUsGnLqiyKWiDgnIixsmj+dQ+7W0f2bcB+9jgSQxBDVx7+b15wTscSpL2oWDfkg9Kio5NuQOXWdC0Gcx6bq8OYgeno/Uo7hQyE78z0uUUzBQtbCjwqiEgg9KqanzAKgfiaB2aaIeHJ6ZCQTFYyAf3sXtioQRquwbwPRC5upjVVI6pOYgagHUUDn8+nNAmJ6Skp9L9q8BBLADAspIamhvpNC+Rl6tr5BeePLFPv3cGPnlzxY+xevjZ5gTaWX6398xa0rl6mM/EJj8j7qI9QVEOfmJ6mAlPt2L8gcUYfvXENH7zbW7T5G5/rnKXT15lyrpyRukjVbRxlIt9DwGVGnozGZUXtwhxs/f82/v15iavwujYcPEHXzktQj8/VKwAK4iOLAXnq2H6Rn+ytYBmmthoUMAyJi+hpbqPs61jCmkpRCR8zqgX7i4kkg4dafP1G59hveFTDCk5HK/XsWnZ2sPgGidA++Sum5vfRseYtCuQ9Rj2U1Nj/niKICWhAakxPc+ft3bl/5gX8uX2Jy7CYu6sAV4gVHVMobXlo0ARGHmREaE1jI8KtWs6pvJ+v3nKR7YBebNsZk9XFGvjvH9R+/oDY+RlKrEq0qoz7KeWRP7vyR/+5n9y1FPUAUQbCQYlmNhw8TDh87wf4DB/nk4w+4e/smUWcX6gqoekJIl+TWLz6vs2CGYSCK7+iBqfsU0nG6GaMxNUVcXJNPXTBCSx1YTgKPIHlJRTH1ZPhcnJIGIrluLOHHMCsB0TYTYFpgpJlOvm4GF2hnU17mHcMW8UUQbaqaPab17cLnJWsXTYmd+96+rwWEqBUkb0OzfSIz1nYCT7sCy+aAzPy6/x8HltOCueV+ei2QOe/LIWHbQgRNEppBFgIzOrCMCsgyhEhEwSCOI8qlrvwMSH4WbDsBkDrS3gXEgDiOGR6+QZKkhGD5gaNdDhh1Wbv50Ke4wvuWJSlC67vANESEeiMhaSR0dXXSVMUlBk7FFTxZ8pk30fsiYuTWRvJGHMd0dnRM8wCWzgEzRMxE70tx++HeKJNroloihAxhaReT5cLIUHUWQrXhbFAnhi+MmspxQYOod5gkmKSPj9YKmEmKSSLqnaDBVI5PDF8YVTjq7o2cv0gWjphoRXxcEB/7mbFaARNBfOzFxwUTrZCFI/dGzl+Eo266aUcdnMtKOw6sjbLyaaAIMoQQL+2+twhEwKiDnQUmGm78TPXqt2PNmP8BDkuxTx7vw40AAAAASUVORK5CYII=">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
 
@@ -79,18 +79,31 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    backdrop-filter: blur(8px);
+    background: rgba(15,23,42,0.2);
+    border-bottom: 1px solid transparent;
+    transition: background 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease, padding 0.4s ease;
+  }
+
+  nav.scrolled {
+    background: rgba(15,23,42,0.92);
     backdrop-filter: blur(20px);
-    background: rgba(15,23,42,0.8);
     border-bottom: 1px solid var(--border);
+    padding: 12px 40px;
   }
 
   .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 20px;
     font-weight: 800;
     letter-spacing: -0.5px;
     color: var(--text-bright);
     text-decoration: none;
   }
+
+  .nav-logo-icon { flex-shrink: 0; }
 
   .nav-logo span { color: var(--primary-light); }
 
@@ -157,9 +170,17 @@
   }
 
   .hero h1 .gradient-text {
-    background: linear-gradient(135deg, var(--primary-light), var(--accent-light));
+    background: linear-gradient(135deg, var(--primary-light), var(--accent-light), #A78BFA, var(--primary-light));
+    background-size: 300% 300%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: gradientShift 6s ease infinite;
+  }
+
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
 
   .hero-sub {
@@ -168,6 +189,32 @@
     color: var(--text-mid);
     max-width: 560px;
     margin-bottom: 48px;
+    animation: fadeInUp 0.6s ease 0.2s both;
+  }
+
+  .typing-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.1em;
+    background: var(--primary-light);
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 0.8s step-end infinite;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  /* === PARTICLES CANVAS === */
+  #particles {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
     animation: fadeInUp 0.6s ease 0.2s both;
   }
 
@@ -242,33 +289,56 @@
     gap: 24px;
   }
 
+  @property --border-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+
   .plugin-card {
     background: var(--bg-card);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     border-radius: 16px;
     padding: 36px;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
     position: relative;
     overflow: hidden;
   }
 
-  .plugin-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary), var(--accent));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-
   .plugin-card:hover {
     transform: translateY(-4px);
-    border-color: rgba(59,130,246,0.3);
+    border-color: transparent;
+    background:
+      linear-gradient(var(--bg-card), var(--bg-card)) padding-box,
+      conic-gradient(from var(--border-angle), var(--primary), var(--accent), #A78BFA, var(--primary)) border-box;
     box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 40px var(--glow-blue);
+    animation: rotateBorder 4s linear infinite;
   }
 
-  .plugin-card:hover::before { opacity: 1; }
+  @keyframes rotateBorder {
+    to { --border-angle: 360deg; }
+  }
+
+  .plugin-version {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent-light);
+    background: rgba(16,185,129,0.1);
+    border: 1px solid rgba(16,185,129,0.2);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-top: 4px;
+  }
+
+  .plugin-version-released {
+    animation: releasedPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes releasedPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); }
+    50% { box-shadow: 0 0 12px 2px rgba(16,185,129,0.25); }
+  }
 
   .plugin-header {
     display: flex;
@@ -311,18 +381,6 @@
     color: var(--text-dim);
   }
 
-  .plugin-version {
-    display: inline-block;
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--accent-light);
-    background: rgba(16,185,129,0.1);
-    border: 1px solid rgba(16,185,129,0.2);
-    border-radius: 4px;
-    padding: 2px 8px;
-    margin-top: 4px;
-  }
-
   .plugin-desc {
     font-size: 15px;
     color: var(--text-mid);
@@ -362,7 +420,7 @@
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.2s ease, transform 0.15s ease;
     cursor: pointer;
     border: none;
   }
@@ -507,6 +565,147 @@
 
   .footer-links a:hover { color: var(--text-bright); }
 
+  /* === SCROLL ANIMATIONS === */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* === CARD CURSOR GLOW === */
+  .plugin-card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .plugin-card .card-glow {
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(59,130,246,0.12), transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0;
+  }
+
+  .plugin-card:hover .card-glow {
+    opacity: 1;
+  }
+
+  .plugin-card > *:not(.card-glow) {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* === BACK TO TOP === */
+  .back-to-top {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 99;
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: var(--bg-mid);
+    border: 1px solid var(--border);
+    color: var(--text-mid);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.3s ease, transform 0.3s ease, background 0.2s ease, border-color 0.2s ease;
+    pointer-events: none;
+    backdrop-filter: blur(12px);
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .back-to-top:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    box-shadow: 0 4px 20px rgba(59,130,246,0.4);
+  }
+
+  .back-to-top svg {
+    width: 20px; height: 20px;
+  }
+
+  /* === FAQ === */
+  .faq-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 20px;
+  }
+
+  .faq-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    transition: border-color 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+  }
+
+  .faq-item:hover {
+    border-color: rgba(59,130,246,0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+
+  .faq-question {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-bright);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .faq-question::before {
+    content: 'Q';
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px; height: 24px;
+    background: rgba(59,130,246,0.1);
+    border: 1px solid rgba(59,130,246,0.2);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--primary-light);
+  }
+
+  .faq-answer {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.7;
+    padding-left: 34px;
+  }
+
+  .faq-answer a {
+    color: var(--primary-light);
+    text-decoration: none;
+  }
+
+  .faq-answer a:hover { text-decoration: underline; }
+
   /* === RESPONSIVE === */
   @media (max-width: 768px) {
     nav { padding: 12px 20px; }
@@ -517,6 +716,7 @@
     section { padding: 60px 20px; }
     .section-title { font-size: 28px; }
     .plugins-grid { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
     .about-content { grid-template-columns: 1fr; gap: 32px; }
     .footer-content { flex-direction: column; gap: 16px; }
   }
@@ -528,13 +728,23 @@
 <div class="bg-grid"></div>
 <div class="bg-glow bg-glow-1"></div>
 <div class="bg-glow bg-glow-2"></div>
+<canvas id="particles"></canvas>
 
 <!-- Navigation -->
 <nav>
-  <a href="#" class="nav-logo">Dwarf<span>Diaries</span></a>
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-icon" width="24" height="24" viewBox="0 0 64 64" fill="none">
+      <line x1="32" y1="18" x2="32" y2="50" stroke="#94A3B8" stroke-width="4" stroke-linecap="round"/>
+      <polygon points="16,18 32,24 32,12" fill="#3B82F6"/>
+      <polygon points="48,18 32,24 32,12" fill="#60A5FA"/>
+      <polygon points="32,8 36,12 32,16 28,12" fill="#10B981"/>
+    </svg>
+    Dwarf<span>Diaries</span>
+  </a>
   <div class="nav-links">
     <a href="#plugins">Plugins</a>
     <a href="#about">About</a>
+    <a href="#faq">FAQ</a>
     <a href="https://www.fab.com" target="_blank">Fab Store</a>
   </div>
 </nav>
@@ -547,34 +757,39 @@
     <span class="gradient-text">UE5 Plugins</span>
   </h1>
   <p class="hero-sub">
-    Production-ready systems for Unreal Engine. Built with clean architecture, full Blueprint support, and documentation that actually helps.
+    <span id="typed"></span><span class="typing-cursor" id="typingCursor"></span>
   </p>
   <div class="hero-stats">
     <div class="hero-stat">
-      <span class="num">100%</span>
+      <span class="num" data-count="10">0</span>
+      <span class="label">Years Experience</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num" data-count="2">0</span>
+      <span class="label">Plugins</span>
+    </div>
+    <div class="hero-stat">
+      <span class="num" data-suffix="%" data-count="100">0</span>
       <span class="label">Blueprint Ready</span>
     </div>
     <div class="hero-stat">
-      <span class="num">C++</span>
-      <span class="label">Core Performance</span>
-    </div>
-    <div class="hero-stat">
-      <span class="num">5.6+</span>
-      <span class="label">Engine Support</span>
+      <span class="num" data-prefix="" data-suffix="+" data-count="15000">0</span>
+      <span class="label">Lines of C++</span>
     </div>
   </div>
 </div>
 
 <!-- Plugins Section -->
 <section id="plugins">
-  <span class="section-label">Products</span>
-  <h2 class="section-title">Plugin Ecosystem</h2>
-  <p class="section-desc">Each plugin is designed to work standalone or together. Shared design philosophy, consistent APIs, and cross-plugin integration where it matters.</p>
+  <span class="section-label reveal">Products</span>
+  <h2 class="section-title reveal reveal-delay-1">Plugin Ecosystem</h2>
+  <p class="section-desc reveal reveal-delay-2">Each plugin is designed to work standalone or together. Shared design philosophy, consistent APIs, and cross-plugin integration where it matters.</p>
 
   <div class="plugins-grid">
 
     <!-- SmartSave -->
-    <div class="plugin-card">
+    <div class="plugin-card reveal">
+      <div class="card-glow"></div>
       <div class="plugin-header">
         <div class="plugin-icon plugin-icon-save">
           <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="28" height="28"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
@@ -582,7 +797,7 @@
         <div>
           <div class="plugin-name">SmartSave</div>
           <div class="plugin-tagline">Save / Load System</div>
-          <span class="plugin-version">v1.0 — Released</span>
+          <span class="plugin-version plugin-version-released">v1.0 — Released</span>
         </div>
       </div>
       <p class="plugin-desc">
@@ -611,7 +826,8 @@
     </div>
 
     <!-- SmartInventory -->
-    <div class="plugin-card">
+    <div class="plugin-card reveal reveal-delay-1">
+      <div class="card-glow"></div>
       <div class="plugin-header">
         <div class="plugin-icon plugin-icon-inventory">
           <svg fill="none" stroke="white" stroke-width="2" viewBox="0 0 24 24" width="28" height="28"><path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/></svg>
@@ -652,10 +868,10 @@
 
 <!-- About Section -->
 <section id="about">
-  <span class="section-label">About</span>
-  <h2 class="section-title">Built by DwarfDiaries</h2>
+  <span class="section-label reveal">About</span>
+  <h2 class="section-title reveal reveal-delay-1">Built by DwarfDiaries</h2>
 
-  <div class="about-content">
+  <div class="about-content reveal reveal-delay-2">
     <div class="about-text">
       <p>
         Hey! I'm the <strong>solo developer</strong> behind DwarfDiaries, and I've been building things for the web and beyond for over <strong>10 years</strong>. This is my studio where I channel all that experience into polished Unreal Engine plugins.
@@ -692,6 +908,45 @@
   </div>
 </section>
 
+<!-- FAQ Section -->
+<section id="faq">
+  <span class="section-label reveal">FAQ</span>
+  <h2 class="section-title reveal reveal-delay-1">Common Questions</h2>
+  <p class="section-desc reveal reveal-delay-2">Everything you need to know before buying.</p>
+
+  <div class="faq-grid">
+    <div class="faq-item reveal">
+      <div class="faq-question">What Unreal Engine versions are supported?</div>
+      <p class="faq-answer">All plugins target UE 5.6 and above. Each new engine version is tested and updated as needed. Updates are free for all existing owners.</p>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-question">Are these Blueprint-only or C++?</div>
+      <p class="faq-answer">Both. The core is written in C++ for performance, but every single function is exposed to Blueprints. You can use 100% Blueprints without ever touching C++. Advanced users get full source code access.</p>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-question">Do the plugins work together?</div>
+      <p class="faq-answer">Yes — they're designed as an ecosystem. SmartInventory integrates natively with SmartSave for persistent item data. Each plugin also works perfectly standalone with zero dependencies on the others.</p>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-question">What license do I get?</div>
+      <p class="faq-answer">Standard Fab/Epic Marketplace license. You get full source code, per-seat licensing. Use in as many projects as you want. Redistribution of source code is not permitted.</p>
+    </div>
+
+    <div class="faq-item reveal">
+      <div class="faq-question">Are updates free?</div>
+      <p class="faq-answer">Yes. All updates — bug fixes, new features, engine version support — are free forever. Once you buy, you're covered.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Back to Top -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0})">
+  <svg fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
 <!-- Footer -->
 <footer>
   <div class="footer-content">
@@ -699,3 +954,196 @@
     <div class="footer-links">
       <a href="https://www.fab.com" target="_blank">Fab Store</a>
       <a href="mailto:contact@dwarfdiaries.com">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+
+  // === Scroll Reveal ===
+  const reveals = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => revealObs.observe(el));
+
+  // === Animated Counters ===
+  const counters = document.querySelectorAll('[data-count]');
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const prefix = el.dataset.prefix || '';
+      const duration = 1800;
+      const start = performance.now();
+      function easeOutExpo(t) { return t === 1 ? 1 : 1 - Math.pow(2, -10 * t); }
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const value = Math.round(easeOutExpo(progress) * target);
+        el.textContent = prefix + value.toLocaleString() + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      counterObs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(el => counterObs.observe(el));
+
+  // === Typing Effect ===
+  const typed = document.getElementById('typed');
+  const cursor = document.getElementById('typingCursor');
+  const text = 'Production-ready systems for Unreal Engine. Built with clean architecture, full Blueprint support, and documentation that actually helps.';
+  let i = 0;
+  function typeChar() {
+    if (i < text.length) {
+      typed.textContent += text[i];
+      i++;
+      setTimeout(typeChar, 22 + Math.random() * 18);
+    } else {
+      setTimeout(() => { cursor.style.display = 'none'; }, 2000);
+    }
+  }
+  setTimeout(typeChar, 800);
+
+  // === Nav Scroll Transition ===
+  const nav = document.querySelector('nav');
+  const backToTopBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    nav.classList.toggle('scrolled', y > 60);
+    backToTopBtn.classList.toggle('visible', y > 500);
+  }, { passive: true });
+
+  // === Card Cursor Glow ===
+  document.querySelectorAll('.plugin-card').forEach(card => {
+    const glow = card.querySelector('.card-glow');
+    if (!glow) return;
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      glow.style.left = (e.clientX - rect.left) + 'px';
+      glow.style.top = (e.clientY - rect.top) + 'px';
+    });
+  });
+
+  // === Magnetic Buttons ===
+  document.querySelectorAll('.btn:not(.btn-disabled)').forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      btn.style.transform = `translate(${x * 0.15}px, ${y * 0.15}px)`;
+    });
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = 'translate(0, 0)';
+    });
+  });
+
+  // === FAQ 3D Tilt ===
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('mousemove', (e) => {
+      const rect = item.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      item.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg)`;
+    });
+    item.addEventListener('mouseleave', () => {
+      item.style.transform = 'perspective(800px) rotateY(0) rotateX(0)';
+    });
+  });
+
+  // === Background Parallax Glows ===
+  const glow1 = document.querySelector('.bg-glow-1');
+  const glow2 = document.querySelector('.bg-glow-2');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        const y = window.scrollY;
+        glow1.style.transform = 'translateY(' + (y * 0.15) + 'px)';
+        glow2.style.transform = 'translateY(' + (-y * 0.1) + 'px)';
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  // === Particles ===
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.size = Math.random() * 1.5 + 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = (Math.random() - 0.5) * 0.3;
+      this.opacity = Math.random() * 0.4 + 0.1;
+      this.pulse = Math.random() * Math.PI * 2;
+      this.isBlue = Math.random() > 0.3;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      this.pulse += 0.015;
+      if (this.x < -10 || this.x > w + 10 || this.y < -10 || this.y > h + 10) this.reset();
+    }
+    draw() {
+      const o = this.opacity * (0.6 + 0.4 * Math.sin(this.pulse));
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = this.isBlue
+        ? `rgba(96, 165, 250, ${o})`
+        : `rgba(52, 211, 153, ${o})`;
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < 50; i++) particles.push(new Particle());
+
+  function animateParticles() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => { p.update(); p.draw(); });
+
+    // Draw faint connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(96, 165, 250, ${0.04 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+
+});
+</script>
+
+</body>
+</html>
